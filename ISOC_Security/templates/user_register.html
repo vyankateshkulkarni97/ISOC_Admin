@@ -1,0 +1,46 @@
+
+{% load static %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
+</head>
+
+<h2>Register</h2>
+<form method="post">
+    {% csrf_token %}
+    <div>
+        &emsp;&emsp;<label for="id_username">Username:</label>
+        &emsp;&emsp;<input type="text" name="username" id="id_username" value="{{ form.username.value|default:'' }}">
+        {% if form.username.errors %}
+            <p style="color:red;">{{ form.username.errors.0 }}</p>
+        {% endif %}
+    </div>
+    
+    <div>
+        &emsp;&emsp;<label for="id_email">Email:</label>&emsp;&emsp;
+        &emsp;&emsp;<input type="email" name="email" id="id_email" value="{{ form.email.value|default:'' }}">&emsp;&emsp;
+        {% if form.email.errors %}
+            <p style="color:red;">{{ form.email.errors.0 }}</p>
+        {% endif %}
+    </div>
+    
+    <div>
+        &emsp;&emsp;<label for="id_password">Password:</label>&emsp;&emsp;
+        &emsp;&emsp;<input type="password" name="password" id="id_password">&emsp;&emsp;
+        {% if form.password.errors %}
+            <p style="color:red;">{{ form.password.errors.0 }}</p>
+        {% endif %}
+    </div>
+    
+    <div>
+        &emsp;&emsp;<label for="id_password1">Confirm Password:</label>&emsp;&emsp;
+        &emsp;&emsp;<input type="password" name="password1" id="id_password1">&emsp;&emsp;
+        {% if form.password1.errors %}
+            <p style="color:red;">{{ form.password1.errors.0 }}</p>
+        {% endif %}
+    </div>
+
+    &emsp;&emsp;<button type="submit">Register</button>&emsp;&emsp;
+</form>
+{% endblock %}
